@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Navigation component in multi-module android apps"
+title: "Navigation component in multi-module android apps"
 ---
 
-![Nav graph]({{site.baseurl}}/assets/images/nav.png)
+![Nav graph]({{site.baseurl}}/assets/images/navigation-graph.png)
 
 With the introduction of Navigation component in android Jetpack library, a ton of features were offered to the developers to ease the pain of arduous Fragment transactions and manually managing the back stack. Sure one can still do it, but given the detail of the Navigation component’s API, it would be a smart idea to let the library do the heavy lifting. 
 
