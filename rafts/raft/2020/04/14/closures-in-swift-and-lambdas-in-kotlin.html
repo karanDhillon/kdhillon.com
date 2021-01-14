@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Closures in swift and lambdas in kotlin | Coding with Karan</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Closures in swift and lambdas in kotlin" />
+<meta name="author" content="Karan Dhillon" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Kotlin and Swift are currently the top two choices of language for Android and iOS respectively. Both have been successfully adopted by their respective communities of developers who use these sharp languages to create some amazing pieces of work. Even though these two languages have their own trademark, underneath it is all the same with different names for legal purposes: Structures offered by Swift can be created as Data Structures in Kotlin by enforcing the kotlin classes to follow some rules. Protocols in Swift is Interfaces in Kotlin. Both languages allow functional programming. Kotlin has sealed classes, however Swift has great Enum support. Closures in Swift are Lambdas in Kotlin." />
+<meta property="og:description" content="Kotlin and Swift are currently the top two choices of language for Android and iOS respectively. Both have been successfully adopted by their respective communities of developers who use these sharp languages to create some amazing pieces of work. Even though these two languages have their own trademark, underneath it is all the same with different names for legal purposes: Structures offered by Swift can be created as Data Structures in Kotlin by enforcing the kotlin classes to follow some rules. Protocols in Swift is Interfaces in Kotlin. Both languages allow functional programming. Kotlin has sealed classes, however Swift has great Enum support. Closures in Swift are Lambdas in Kotlin." />
+<link rel="canonical" href="http://localhost:4000/2020/04/14/closures-in-swift-and-lambdas-in-kotlin.html" />
+<meta property="og:url" content="http://localhost:4000/2020/04/14/closures-in-swift-and-lambdas-in-kotlin.html" />
+<meta property="og:site_name" content="Coding with Karan" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-04-14T00:00:00-04:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Closures in swift and lambdas in kotlin" />
+<script type="application/ld+json">
+{"headline":"Closures in swift and lambdas in kotlin","dateModified":"2020-04-14T00:00:00-04:00","datePublished":"2020-04-14T00:00:00-04:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/04/14/closures-in-swift-and-lambdas-in-kotlin.html"},"author":{"@type":"Person","name":"Karan Dhillon"},"description":"Kotlin and Swift are currently the top two choices of language for Android and iOS respectively. Both have been successfully adopted by their respective communities of developers who use these sharp languages to create some amazing pieces of work. Even though these two languages have their own trademark, underneath it is all the same with different names for legal purposes: Structures offered by Swift can be created as Data Structures in Kotlin by enforcing the kotlin classes to follow some rules. Protocols in Swift is Interfaces in Kotlin. Both languages allow functional programming. Kotlin has sealed classes, however Swift has great Enum support. Closures in Swift are Lambdas in Kotlin.","url":"http://localhost:4000/2020/04/14/closures-in-swift-and-lambdas-in-kotlin.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Coding with Karan" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Coding with Karan</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Closures in swift and lambdas in kotlin</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2020-04-14T00:00:00-04:00" itemprop="datePublished">
+        Apr 14, 2020
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Kotlin and Swift are currently the top two choices of language for Android and iOS respectively. Both have been successfully adopted by their respective communities of developers who use these sharp languages to create some amazing pieces of work. Even though these two languages have their own trademark, underneath it is all the same with different names for legal purposes:</p>
+<ul>
+  <li>Structures offered by Swift can be created as Data Structures in Kotlin by enforcing the kotlin classes to follow some rules.</li>
+  <li>Protocols in Swift is Interfaces in Kotlin.</li>
+  <li>Both languages allow functional programming.</li>
+  <li>Kotlin has sealed classes, however Swift has great Enum support.</li>
+  <li>Closures in Swift are Lambdas in Kotlin.</li>
+</ul>
+
+<p>You get the idea. Though there are some pieces of differences here and there, these differences do not matter in the grand scheme. Today, we will take a look <code class="language-plaintext highlighter-rouge">closures</code> in swift, which are blood-brothers to “lambdas” in kotlin.</p>
+
+<h1 id="closures-in-swift">Closures in Swift</h1>
+<p>A closure in Swift is a anonymous function which can be passed around in the scope. What this means is that functions are treated as first class citizens, just like variables or objects in Object Oriented Programming(OOP) environment. A function in swift that accepts a function as one of its parameter looks like this:</p>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">exampleFunction</span><span class="p">(</span>
+    <span class="nv">param1</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> 
+    <span class="nv">param2</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> 
+    <span class="nv">ourFunc</span><span class="p">:</span> <span class="p">(</span><span class="kt">Int</span><span class="p">,</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="o">...</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">ourFunc</code> is our <code class="language-plaintext highlighter-rouge">function</code> passed as a <code class="language-plaintext highlighter-rouge">parameter</code> to <code class="language-plaintext highlighter-rouge">exampleFunction</code>. <code class="language-plaintext highlighter-rouge">ourFunc</code> will accept two <code class="language-plaintext highlighter-rouge">params</code> of its own of the data type <code class="language-plaintext highlighter-rouge">Int</code> and would return an <code class="language-plaintext highlighter-rouge">Int</code> type. Now to make it into a <code class="language-plaintext highlighter-rouge">closure</code>, we have to call our <code class="language-plaintext highlighter-rouge">exampleFunction</code>. In order to do that, we will go through certain steps and transformations:</p>
+<ol>
+  <li>we will call our function and provide all the params:
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">exampleFunction</span><span class="p">(</span><span class="s">"param1"</span><span class="p">,</span> <span class="s">"param2"</span><span class="p">,</span> <span class="p">{</span> <span class="p">(</span><span class="nv">no1</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">no2</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="k">in</span>
+ <span class="c1">// Here we are inside our 'ourFunc' can use no1 &amp; no2 parameter</span>
+ <span class="k">return</span> <span class="n">no1</span> <span class="o">+</span> <span class="n">no2</span>
+ <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Here’s where closures start to become a bit tricky. The swift compiler is smart enough to infer the type of the parameters that we will pass in the ‘ourFunc’, so omitting the data types will change nothing:
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">exampleFunction</span><span class="p">(</span><span class="s">"param1"</span><span class="p">,</span> <span class="s">"param2"</span><span class="p">,</span> <span class="p">{</span> <span class="p">(</span><span class="n">no1</span><span class="p">,</span> <span class="n">no2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="k">in</span>
+ <span class="k">return</span> <span class="n">no1</span> <span class="o">+</span> <span class="n">no2</span>
+<span class="p">})</span>
+</code></pre></div>    </div>
+  </li>
+  <li>again, we dont need to explicitly define the return data type as swift compiler can infer that as well:
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">exampleFunction</span><span class="p">(</span><span class="s">"param1"</span><span class="p">,</span> <span class="s">"param2"</span><span class="p">,</span> <span class="p">{</span> <span class="p">(</span><span class="n">no1</span><span class="p">,</span> <span class="n">no2</span><span class="p">)</span> <span class="k">in</span>
+ <span class="k">return</span> <span class="n">no1</span> <span class="o">+</span> <span class="n">no2</span>
+<span class="p">})</span>
+</code></pre></div>    </div>
+  </li>
+  <li>We also dont need to explicitly say <code class="language-plaintext highlighter-rouge">return</code>, as that can also be infered like below:
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">exampleFunction</span><span class="p">(</span><span class="s">"param1"</span><span class="p">,</span> <span class="s">"param2"</span><span class="p">,</span> <span class="p">{</span> <span class="p">(</span><span class="n">no1</span><span class="p">,</span> <span class="n">no2</span><span class="p">)</span> <span class="k">in</span> <span class="n">no1</span> <span class="o">+</span> <span class="n">no2</span> <span class="p">})</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Closures in swift allow us to pass anonymous parameters, as <code class="language-plaintext highlighter-rouge">$0</code> for first param, <code class="language-plaintext highlighter-rouge">$1</code> for second param, and so on. So we can further simply our function call to:
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">exampleFunction</span><span class="p">(</span><span class="s">"param1"</span><span class="p">,</span> <span class="s">"param2"</span><span class="p">,</span> <span class="p">{</span> <span class="nv">$0</span> <span class="o">+</span> <span class="nv">$1</span> <span class="p">})</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Now lastly, swift allows us with a feature where if the closure is defined as the last parameter in a function, i.e. a trailing closure, we can take it out of the function’s parameter parentheses like below:
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">exampleFunction</span><span class="p">(</span><span class="s">"param1"</span><span class="p">,</span> <span class="s">"param2"</span><span class="p">)</span> <span class="p">{</span> <span class="nv">$0</span> <span class="o">+</span> <span class="nv">$1</span> <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>As you can imagine, someone who is not aware of closures or lambdas might get confused if they sees the form define in the 6th point. So any of the forms mentioned above can be used as they all mean the same thing. Its simply an anonymous function being passed as a parameter.</p>
+
+<p>Now let us take a look at Lambdas in kotlin and then you will realize how both closure and lambdas are the same thing.</p>
+
+<h1 id="lambdas-in-kotlin">Lambdas in Kotlin</h1>
+<p>A lambda expression is nothing but a shorthand way to define the structure of a function. Lets say we have a function as below:</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">myFunction</span><span class="p">(</span><span class="n">param1</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span> <span class="n">param2</span><span class="p">:</span> <span class="nc">String</span><span class="p">):</span> <span class="nc">String</span>
+</code></pre></div></div>
+
+<p>The same function can be defined as a Lambda expression as below:</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nc">String</span><span class="p">,</span> <span class="nc">String</span><span class="p">):</span> <span class="nc">String</span>
+</code></pre></div></div>
+
+<p>A lambda expression tells us:</p>
+<ul>
+  <li>What the types of parameters are and how many parameters do we have.</li>
+  <li>What is the return data type of the function.</li>
+</ul>
+
+<p>Just like in Swift, functions are treated as a “First class” citizens in kotlin. Which means that functions can be passed as parameters to another functions, functions can be the return type of another function and functions can be saved in a variable. Now lets see how we will pass a lambda function to a normal kotlin function as one of its parameter.</p>
+
+<ol>
+  <li>Lets say that our function will contain one <code class="language-plaintext highlighter-rouge">String</code> parameter and one <code class="language-plaintext highlighter-rouge">Lambda</code> function parameter as below:
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">myFunction</span><span class="p">(</span><span class="n">param1</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span> <span class="n">lambda</span><span class="p">:</span> <span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nc">Int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nc">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nc">String</span> <span class="p">):</span> <span class="nc">String</span> <span class="p">{</span>
+ <span class="c1">// We assume that our lambda function will return "5".</span>
+ <span class="kd">val</span> <span class="py">stringReturnedFromLambda</span> <span class="p">=</span> <span class="nf">lambda</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+ <span class="k">return</span> <span class="n">param1</span> <span class="p">+</span> <span class="n">stringReturnedFromLambda</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+    <blockquote>
+      <p>Note: It is not necessary to name our parameter “lambda”. It is being done to simplify.</p>
+    </blockquote>
+  </li>
+  <li>Now when we will call myFunction, we will have to provide this lambda function on its calling. This lambda function simply has to follow the contract specified in the function definition. So we will get something like below:
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">muFunction</span><span class="p">(</span><span class="s">"myString"</span><span class="p">,</span> <span class="p">{</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="p">-&gt;</span>
+ <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="n">a</span> <span class="p">+</span> <span class="n">b</span>
+
+ <span class="k">return</span> <span class="n">sum</span><span class="p">.</span><span class="nf">toString</span><span class="p">()</span>
+<span class="p">})</span>
+</code></pre></div>    </div>
+  </li>
+  <li>If we only have one parameter in our lambda, for example:
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">myFunction</span><span class="p">(</span><span class="n">param1</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span> <span class="n">lambda</span><span class="p">:</span> <span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nc">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nc">String</span> <span class="p">):</span> <span class="nc">String</span> <span class="p">{</span>
+ <span class="kd">val</span> <span class="py">stringReturnedFromLambda</span> <span class="p">=</span> <span class="nf">lambda</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+ <span class="k">return</span> <span class="n">param1</span> <span class="p">+</span> <span class="n">stringReturnedFromLambda</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+    <p>Then we dont need to explicitly define the parameters <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">b</code> like we did in #2. Below representation would be fine as well:</p>
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">muFunction</span><span class="p">(</span><span class="s">"myString"</span><span class="p">,</span> <span class="p">{</span> 
+ <span class="k">return</span> <span class="n">it</span><span class="p">.</span><span class="nf">toString</span><span class="p">()</span>
+<span class="p">})</span>
+</code></pre></div>    </div>
+    <p>As you can see, for one parameter, we get something called <code class="language-plaintext highlighter-rouge">it</code>, which is nothing but our handle to the <code class="language-plaintext highlighter-rouge">lambda parameter</code>. You are free to give a name to this it, just like we did before:</p>
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">muFunction</span><span class="p">(</span><span class="s">"myString"</span><span class="p">,</span> <span class="p">{</span> <span class="n">a</span> <span class="p">-&gt;</span>
+ <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="nf">toString</span><span class="p">()</span>
+<span class="p">})</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Now for the trailing lamda part, which means if the last parameter of a function is a lambda expression, then we can bring it out of the parameter parenthesis just like we did in case of closures:
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">muFunction</span><span class="p">(</span><span class="s">"myString"</span><span class="p">)</span> <span class="p">{</span> <span class="n">a</span> <span class="p">-&gt;</span>
+ <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="nf">toString</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+    <p>We can shorten it by using it :</p>
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">muFunction</span><span class="p">(</span><span class="s">"myString"</span><span class="p">)</span> <span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="nf">toString</span><span class="p">()</span> <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>As you see, both Closures and Lambdas are made to solve the same problem: Passing anonymous functions as parameter to another function. They might have different names because of belonging to two different languages, however they are one and the same thing.</p>
+
+  </div><a class="u-url" href="/2020/04/14/closures-in-swift-and-lambdas-in-kotlin.html" hidden></a>
+</article>
+      </div>
+    </main></body>
+
+</html>

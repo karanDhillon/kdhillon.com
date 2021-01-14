@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>All about annotations and annotation processors | Coding with Karan</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="All about annotations and annotation processors" />
+<meta name="author" content="Karan Dhillon" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I am a Mobile Engineer who works for a Toronto based company called Homestars, Inc. I love working on android applications where I incorporate clean architecture along with SOLID principles all enforced by a Test Driven Development (TDD) approach." />
+<meta property="og:description" content="I am a Mobile Engineer who works for a Toronto based company called Homestars, Inc. I love working on android applications where I incorporate clean architecture along with SOLID principles all enforced by a Test Driven Development (TDD) approach." />
+<link rel="canonical" href="http://localhost:4000/2020/04/16/all-about-annotations-and-annotation-processors.html" />
+<meta property="og:url" content="http://localhost:4000/2020/04/16/all-about-annotations-and-annotation-processors.html" />
+<meta property="og:site_name" content="Coding with Karan" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-04-16T00:00:00-04:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="All about annotations and annotation processors" />
+<script type="application/ld+json">
+{"headline":"All about annotations and annotation processors","dateModified":"2020-04-16T00:00:00-04:00","datePublished":"2020-04-16T00:00:00-04:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/04/16/all-about-annotations-and-annotation-processors.html"},"author":{"@type":"Person","name":"Karan Dhillon"},"description":"I am a Mobile Engineer who works for a Toronto based company called Homestars, Inc. I love working on android applications where I incorporate clean architecture along with SOLID principles all enforced by a Test Driven Development (TDD) approach.","url":"http://localhost:4000/2020/04/16/all-about-annotations-and-annotation-processors.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Coding with Karan" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Coding with Karan</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">All about annotations and annotation processors</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2020-04-16T00:00:00-04:00" itemprop="datePublished">
+        Apr 16, 2020
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><img src="/assets/images/annotation-processing-rounds.png" alt="Annotation processing rounds" /></p>
+
+<p>Annotations provide metadata to our code. This metadata is only relevant to the scope of development and to the developer. In the absence of an annotation, this metadata information would have to be “squeezed” in our code by other means, such as naming conventions for example. To save the source code from such travesties, Java came up with the <code class="language-plaintext highlighter-rouge">Annotations API</code> in <code class="language-plaintext highlighter-rouge">JAVA 1.5</code> or <code class="language-plaintext highlighter-rouge">version 5</code> (<code class="language-plaintext highlighter-rouge">Java 1.6</code> brought complete annotations support). With the help of annotations, we can include this metadata information in different “elements” of our source code. These elements can be any of the following:</p>
+<ul>
+  <li>Classes</li>
+  <li>Interfaces</li>
+  <li>Class or interface properties</li>
+  <li>Class or interface methods</li>
+  <li>Variables</li>
+  <li>Other first class citizens of your language</li>
+</ul>
+
+<p>After you mark you elements with the desired annotations, the class goes to the <code class="language-plaintext highlighter-rouge">javac</code> (Java Complier) as per the usual business. As expected, <code class="language-plaintext highlighter-rouge">javac</code> is unaware of these annotations and it needs some help in unfolding the meaning if these alien entities. That is where annotation processors come into play. Annotation processors unfold the true intent of their respective supported annotation and eventually passed the resulting class back to the <code class="language-plaintext highlighter-rouge">javac</code>. At this point <code class="language-plaintext highlighter-rouge">javac</code> is stuck in a loop, where each and every annotation must be resolved before it can produce the desired <code class="language-plaintext highlighter-rouge">java classes</code>. We will discuss in detail this loop and the entire cycle in detail later in the article. Let us first try to understand what annotations are and how you can create your own annotations.</p>
+
+<h1 id="what-are-annotations">What are annotations?</h1>
+<p>To understand what are annotations and why we need them, let us observe a case. Let’s assume we have two <code class="language-plaintext highlighter-rouge">classes</code>, <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code>. Both of them have a overloaded <code class="language-plaintext highlighter-rouge">function</code> called <code class="language-plaintext highlighter-rouge">veryLongNameFunction()</code>.</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">A</span> <span class="p">{</span>
+  <span class="k">fun</span> <span class="nf">veryLongFunction</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"function called in class A"</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">B</span><span class="p">:</span> <span class="nc">A</span> <span class="p">{</span>
+  <span class="k">fun</span> <span class="nf">verylongFunction</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"function called in class B"</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>On calling <code class="language-plaintext highlighter-rouge">b.veryLongFunction()</code>, class <code class="language-plaintext highlighter-rouge">A</code> function would be called. That happens because of our <code class="language-plaintext highlighter-rouge">typo</code> in class <code class="language-plaintext highlighter-rouge">B</code>’s function name. Needless to say, this will lead to a <code class="language-plaintext highlighter-rouge">run time error</code> which is expensive. To turn it into a <code class="language-plaintext highlighter-rouge">compile time check</code>, we can mark this method in class <code class="language-plaintext highlighter-rouge">B</code> with an annotation which can explicitly state that this is an <code class="language-plaintext highlighter-rouge">overrided</code> method of its <code class="language-plaintext highlighter-rouge">super class</code>.</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">B</span><span class="p">:</span> <span class="nc">A</span> <span class="p">{</span>
+  <span class="err">@</span><span class="k">override</span>
+  <span class="k">fun</span> <span class="nf">veryLongFunction</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"function called in class B"</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Now, we will not get a <code class="language-plaintext highlighter-rouge">run time error</code> as our <code class="language-plaintext highlighter-rouge">compiler</code> will throw an <code class="language-plaintext highlighter-rouge">error</code> if we will try to use our <code class="language-plaintext highlighter-rouge">override</code> method by using <code class="language-plaintext highlighter-rouge">b.verylongFunction()</code>, as it is not overriding anything. This is the power of annotations. They can be used in various ways, in our case for instance, we used an annotation as an explicit markup. You can use annotations for code generation as well, which is what most of the external libraries do when they offer you a set of annotations to sprinkle around in your codebase. With the help of these annotations, the library’s annotation processor will kick in during compile time and it will produce all the meta data and generate new code required for the library to work with, making your job as a developer easier. One such instance of such a library is Dagger(2.0). The only way dagger is able to create a “Directed Acyclic Graph” of your dependencies is  with the help of all the annotations the library requires you to put in your codebase, such as <code class="language-plaintext highlighter-rouge">@inject</code>, <code class="language-plaintext highlighter-rouge">@provides</code>, <code class="language-plaintext highlighter-rouge">@module</code>, etc.</p>
+
+<p>Now that we are aware of what annotations are and why they were needed in the first place, lets see how we can create our custom annotations and use them in our codebase.</p>
+
+<h1 id="how-to-create-a-custom-annotation">How to create a custom annotation</h1>
+<p>Let us suppose the name of our custom annotation is <code class="language-plaintext highlighter-rouge">myAnnotation</code>. In order to create our custom annotation, we have to provide some <code class="language-plaintext highlighter-rouge">meta information</code> about our custom annotation. This meta information will explain the retention policy and the element to which our annotation will abide. This meta information can be added through the help of, you guessed it, annotations. Here is what these meta-annotations look like:</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Target</span><span class="p">(</span><span class="nc">ElementType</span><span class="p">.</span><span class="nc">TYPE</span><span class="p">,</span> <span class="nc">ElementType</span><span class="p">.</span><span class="nc">Class</span><span class="p">)</span>
+<span class="nd">@Retention</span><span class="p">(</span><span class="nc">RententionPolicy</span><span class="p">.</span><span class="nc">RUNTIME</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>In <code class="language-plaintext highlighter-rouge">Target</code>, we specify the type of element we will attach our annotation, such as <code class="language-plaintext highlighter-rouge">variable</code>, <code class="language-plaintext highlighter-rouge">class</code>, etc.
+In <code class="language-plaintext highlighter-rouge">Retention</code>, we specify how long our annotation will be retained, i.e. either until <code class="language-plaintext highlighter-rouge">SOURCE</code>, <code class="language-plaintext highlighter-rouge">CLASS</code>, or <code class="language-plaintext highlighter-rouge">RUNTIME</code>. Retaining a annotation until runtime can allow us to use <code class="language-plaintext highlighter-rouge">reflection</code> to read the annotation’s data.</p>
+
+<p>There are three types of annotations we can create based on our needs:</p>
+
+<ol>
+  <li>Marker annotation, as it does not have any value:
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Target</span><span class="p">(</span><span class="nc">ElementType</span><span class="p">.</span><span class="nc">TYPE</span><span class="p">)</span>
+<span class="nd">@Retention</span><span class="p">(</span><span class="nc">RententionPolicy</span><span class="p">.</span><span class="nc">RUNTIME</span><span class="p">)</span>
+<span class="err">@</span><span class="kd">interface</span> <span class="err">my</span><span class="nc">Annotation</span> <span class="p">{</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Single value annotation, as it has a function that returns one value:
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Target</span><span class="p">(</span><span class="nc">ElementType</span><span class="p">.</span><span class="nc">TYPE</span><span class="p">)</span>
+<span class="nd">@Retention</span><span class="p">(</span><span class="nc">RententionPolicy</span><span class="p">.</span><span class="nc">RUNTIME</span><span class="p">)</span>
+<span class="err">@</span><span class="kd">interface</span> <span class="err">my</span><span class="nc">Annotation</span> <span class="p">{</span>
+  <span class="k">fun</span> <span class="nf">myField</span><span class="p">():</span> <span class="nc">String</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+    <p>If you dont want to use the argument name, then name the function as value:</p>
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Target</span><span class="p">(</span><span class="nc">ElementType</span><span class="p">.</span><span class="nc">TYPE</span><span class="p">)</span>
+<span class="nd">@Retention</span><span class="p">(</span><span class="nc">RententionPolicy</span><span class="p">.</span><span class="nc">RUNTIME</span><span class="p">)</span>
+<span class="err">@</span><span class="kd">interface</span> <span class="err">my</span><span class="nc">Annotation</span> <span class="p">{</span>
+  <span class="k">fun</span> <span class="nf">value</span><span class="p">():</span> <span class="nc">Int</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Multi value annotation, as it has multiple functions that return a value:
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Target</span><span class="p">(</span><span class="nc">ElementType</span><span class="p">.</span><span class="nc">TYPE</span><span class="p">)</span>
+<span class="nd">@Retention</span><span class="p">(</span><span class="nc">RententionPolicy</span><span class="p">.</span><span class="nc">RUNTIME</span><span class="p">)</span>
+<span class="err">@</span><span class="kd">interface</span> <span class="err">my</span><span class="nc">Annotation</span> <span class="p">{</span>
+  <span class="k">fun</span> <span class="nf">myFirstField</span><span class="p">():</span> <span class="nc">String</span>
+  <span class="k">fun</span> <span class="nf">mySecondField</span><span class="p">():</span> <span class="nc">Int</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>So now in order to annotate our element with our custom annotation, all we need to do is this:</p>
+<ol>
+  <li>For Marker annotation:
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">@</span><span class="n">myAnnotation</span>
+<span class="kd">class</span> <span class="nc">A</span> <span class="p">{}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>For Single value annotation(named argument):
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">@</span><span class="nf">myAnnotation</span><span class="p">(</span><span class="n">myField</span> <span class="p">=</span> <span class="s">"String"</span><span class="p">)</span>
+<span class="kd">class</span> <span class="nc">A</span> <span class="p">{}</span>
+</code></pre></div>    </div>
+    <p>For Single value annotation(unnamed argument, where the name of the function is “value”):</p>
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">@</span><span class="nf">myAnnotation</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="kd">class</span> <span class="nc">A</span> <span class="p">{}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>For Multi value annotation:
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">@</span><span class="nf">myAnnotation</span><span class="p">(</span><span class="n">myFirstField</span> <span class="p">=</span> <span class="s">"String"</span><span class="p">,</span> <span class="n">mySecondField</span> <span class="p">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="kd">class</span> <span class="nc">A</span> <span class="p">{}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Notice how our <code class="language-plaintext highlighter-rouge">single value</code> and <code class="language-plaintext highlighter-rouge">multi value</code> annotation form can take arguments. These <code class="language-plaintext highlighter-rouge">parameters</code> have the same name as the function name defined in the <code class="language-plaintext highlighter-rouge">interface</code> and the data type they accept is the one the function returns. These arguments can be used by the annotation processor as <code class="language-plaintext highlighter-rouge">flags</code> or <code class="language-plaintext highlighter-rouge">configuration parameters</code> for any purpose you deem fit. You can also provide default values to these arguments in case if the arguments are not provided.</p>
+
+<p>There are certain rules you should be aware of if you are going to define your own custom annotations:</p>
+<ul>
+  <li>Annotations cannot participate in inheritance.</li>
+  <li>Annotation’s functions should not contain any arguments.</li>
+  <li>Annotations cannot be generic or specify a throw clause.</li>
+  <li>Annotations must return: an enum, primitive type or an annotation, String, or Class object. They can also return an array of these types.</li>
+</ul>
+
+<p>Now let’s talk about annotation processors, what they are, what they do, how they do it, and how can we create our own custom annotation processor.</p>
+
+<h1 id="annotation-processors">Annotation Processors</h1>
+<p>Annotation processors work or kick in inside <code class="language-plaintext highlighter-rouge">javac</code>(Java Compiler). We don’t have to opt into this. Just by having an annotation processor on our <code class="language-plaintext highlighter-rouge">classpath</code> when our code is compiling, our annotation processor will run. It does so with the help of something called <code class="language-plaintext highlighter-rouge">Service Loader</code>, which finds the processors, and processors is the class that we will implement in order to create our custom one.</p>
+
+<ol>
+  <li>Let us create our own processor called “CustomProcessor” as below:
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">CustomProcessor</span><span class="p">:</span> <span class="nc">AbstractProcessor</span><span class="p">()</span> <span class="p">{</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>The first function that we will implement is called <code class="language-plaintext highlighter-rouge">getSupportedSourceVersion()</code>, which will tell the level of <code class="language-plaintext highlighter-rouge">java</code> coming in and the level of <code class="language-plaintext highlighter-rouge">java</code> going out. It is a good idea to always support the latest version that our <code class="language-plaintext highlighter-rouge">javac</code> is running on.
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">CustomProcessor</span><span class="p">:</span> <span class="nc">AbstractProcessor</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nd">@Override</span> 
+  <span class="k">fun</span> <span class="nf">getSupportedSourceVersion</span><span class="p">():</span> <span class="nc">SourceVersion</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="nc">SourceVersion</span><span class="p">.</span><span class="nf">latestSupported</span><span class="p">()</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>The second function that we will implement is called <code class="language-plaintext highlighter-rouge">getSupportedAnnotationTypes()</code>, which tells <code class="language-plaintext highlighter-rouge">javac</code> what the fully qualified names of the annotations we care about are. So <code class="language-plaintext highlighter-rouge">javac</code> will only call our processor for the annotations that we tell it to.
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">CustomProcessor</span><span class="p">:</span> <span class="nc">AbstractProcessor</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nd">@Override</span> 
+  <span class="k">fun</span> <span class="nf">getSupportedSourceVersion</span><span class="p">():</span> <span class="nc">SourceVersion</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="nc">SourceVersion</span><span class="p">.</span><span class="nf">latestSupported</span><span class="p">()</span>
+  <span class="p">}</span>
+  <span class="nd">@Overried</span> 
+  <span class="k">fun</span> <span class="nf">getSupportedAnnotationTypes</span><span class="p">():</span> <span class="nc">Set</span><span class="p">&lt;</span><span class="nc">String</span><span class="p">&gt;</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="nc">Collections</span><span class="p">.</span><span class="nf">singelton</span><span class="p">(</span><span class="nc">Example</span><span class="p">.</span><span class="k">class</span><span class="p">.</span><span class="nf">getName</span><span class="p">())</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>The third function is the most important one is called <code class="language-plaintext highlighter-rouge">process()</code>:
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">CustomProcessor</span><span class="p">:</span> <span class="nc">AbstractProcessor</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nd">@Override</span>
+  <span class="k">fun</span> <span class="nf">getSupportedSourceVersion</span><span class="p">():</span> <span class="nc">SourceVersion</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="nc">SourceVersion</span><span class="p">.</span><span class="nf">latestSupported</span><span class="p">()</span>
+  <span class="p">}</span>
+  <span class="nd">@Overried</span>
+  <span class="k">fun</span> <span class="nf">getSupportedAnnotationTypes</span><span class="p">():</span> <span class="nc">Set</span><span class="p">&lt;</span><span class="nc">String</span><span class="p">&gt;</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="nc">Collections</span><span class="p">.</span><span class="nf">singelton</span><span class="p">(</span><span class="nc">Example</span><span class="p">.</span><span class="k">class</span><span class="p">.</span><span class="nf">getName</span><span class="p">())</span>
+  <span class="p">}</span>
+  <span class="nd">@Override</span> 
+  <span class="k">fun</span> <span class="nf">process</span><span class="p">(</span><span class="n">annotations</span><span class="p">:</span> <span class="nc">Set</span><span class="p">&lt;</span><span class="err">?</span><span class="p">:</span> <span class="nc">TypeElement</span><span class="p">&gt;,</span> <span class="n">env</span><span class="p">:</span> <span class="nc">RoundEnvironment</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+    <p>Lets us understand what happens inside the process function.</p>
+    <ol>
+      <li>We query our environment to get all the elements that our annotated with our annotation:
+        <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nd">@Override</span> 
+ <span class="k">fun</span> <span class="nf">process</span><span class="p">(</span><span class="n">annotations</span><span class="p">:</span> <span class="nc">Set</span><span class="p">&lt;</span><span class="err">?</span><span class="p">:</span> <span class="nc">TypeElement</span><span class="p">&gt;,</span> <span class="n">env</span><span class="p">:</span> <span class="nc">RoundEnvironment</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">{</span>
+ <span class="c1">// We query the types that are annotated with our annotations.</span>
+ <span class="c1">// The returned elements are the ones marked with our Example Annotation.</span>
+
+ <span class="n">let</span> <span class="n">elements</span><span class="p">:</span> <span class="nc">Set</span><span class="p">&lt;</span><span class="err">?</span><span class="p">:</span> <span class="nc">Element</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">getElementsAnnotatedWith</span><span class="p">(</span><span class="nc">Example</span><span class="p">.</span><span class="k">class</span><span class="p">)</span>
+ <span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+      <li>We can use these collected elements, which could be <code class="language-plaintext highlighter-rouge">classes</code>, <code class="language-plaintext highlighter-rouge">variables</code>, <code class="language-plaintext highlighter-rouge">functions</code>, use libraries called <code class="language-plaintext highlighter-rouge">javaPoet</code> and produce <code class="language-plaintext highlighter-rouge">java classes</code>.
+        <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nd">@Override</span> 
+ <span class="k">fun</span> <span class="nf">process</span><span class="p">(</span><span class="n">annotations</span><span class="p">:</span> <span class="nc">Set</span><span class="p">&lt;</span><span class="err">?</span><span class="p">:</span> <span class="nc">TypeElement</span><span class="p">&gt;,</span> <span class="n">env</span><span class="p">:</span> <span class="nc">RoundEnvironment</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">{</span>
+ <span class="n">let</span> <span class="n">elements</span><span class="p">:</span> <span class="nc">Set</span><span class="p">&lt;</span><span class="err">?</span><span class="p">:</span> <span class="nc">Element</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">getElementsAnnotatedWith</span><span class="p">(</span><span class="nc">Example</span><span class="p">.</span><span class="k">class</span><span class="p">)</span>
+
+ <span class="k">for</span><span class="p">(</span><span class="n">element</span> <span class="k">in</span> <span class="n">elements</span><span class="p">)</span>
+     <span class="nf">print</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+
+ <span class="k">return</span> <span class="k">false</span>
+ <span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ol>
+
+    <blockquote>
+      <p>One cool thing about annotation processors, besident code generation, is that they run in their own <code class="language-plaintext highlighter-rouge">JVM</code>. Though you can not access source files and its dependencies as they are being compiled as well during the time our annotation processor is working, however, we can bring our own set of dependencies. This means that you can create <code class="language-plaintext highlighter-rouge">models</code>, <code class="language-plaintext highlighter-rouge">factories</code>, etc. anything to make your annotation processor module clean and solid. This code will not contribute to the generated code and will only be scope to the <code class="language-plaintext highlighter-rouge">JVM</code> in which your annotation processor will be running on.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>The fourth function that is present in the AbstractProcessor is called <code class="language-plaintext highlighter-rouge">init(processingEnv: ProcessingEnvironment)</code>. As expected, in <code class="language-plaintext highlighter-rouge">init</code> we do all the initialization for our custom processor. <code class="language-plaintext highlighter-rouge">ProcessingEnvironment</code> is yet another interface which we will not discuss here, however it has two important functions that we should talk about:
+ First is <code class="language-plaintext highlighter-rouge">fun getMessenger(): Messenger</code>, which returns us a <code class="language-plaintext highlighter-rouge">Messenger</code> object. With the help of <code class="language-plaintext highlighter-rouge">Messenger</code>, we can communicate the <code class="language-plaintext highlighter-rouge">warnings</code> or <code class="language-plaintext highlighter-rouge">errors</code> back to the third party developer who is compiling in case there is an issue in the <code class="language-plaintext highlighter-rouge">process()</code> function. This is a good practice as in its absence, if an <code class="language-plaintext highlighter-rouge">exception</code> occurs, our <code class="language-plaintext highlighter-rouge">jvm</code> in which our custom annotation processor is running will simply crash and produce a <code class="language-plaintext highlighter-rouge">backstack dump</code>, which is not useful to the developer. We can also control how the third party developer will use our annotations by throwing <code class="language-plaintext highlighter-rouge">errors</code> that will force them to follow the rules we will lay down with respect to how to use our annotations.</p>
+
+    <p>Second is <code class="language-plaintext highlighter-rouge">fun getFiler(): Filer</code>, which returns us a <code class="language-plaintext highlighter-rouge">Filer</code> object. In short, <code class="language-plaintext highlighter-rouge">Filer</code> helps us to actually create and write <code class="language-plaintext highlighter-rouge">java files</code>.</p>
+  </li>
+</ol>
+
+<p>The last two we should look at are fun <code class="language-plaintext highlighter-rouge">getElementUtils(): Elements</code> &amp; <code class="language-plaintext highlighter-rouge">fun getTypeUtils(): Types</code>. These methods return utility classes that we can use to work with elements of different types that we will receive based on where our annotation is placed on. An analogy here would be that of <code class="language-plaintext highlighter-rouge">XML</code>, which has the concept of parent and children elements. Similarly, in java we define our class as <code class="language-plaintext highlighter-rouge">TypeElement</code>, variables as <code class="language-plaintext highlighter-rouge">VariableElement</code>, and functions as <code class="language-plaintext highlighter-rouge">ExecutableElement</code>.</p>
+
+<p>So the complete code for our custom annotation processor will look like this:</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">CustomProcessor</span><span class="p">:</span> <span class="nc">AbstractProcessor</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nd">@Override</span> 
+  <span class="k">fun</span> <span class="nf">getSupportedSourceVersion</span><span class="p">():</span> <span class="nc">SourceVersion</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nc">SourceVersion</span><span class="p">.</span><span class="nf">latestSupported</span><span class="p">()</span>
+  <span class="p">}</span>
+
+  <span class="nd">@Overried</span> 
+  <span class="k">fun</span> <span class="nf">getSupportedAnnotationTypes</span><span class="p">():</span> <span class="nc">Set</span><span class="p">&lt;</span><span class="nc">String</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nc">Collections</span><span class="p">.</span><span class="nf">singelton</span><span class="p">(</span><span class="nc">Example</span><span class="p">.</span><span class="k">class</span><span class="p">.</span><span class="nf">getName</span><span class="p">())</span>
+  <span class="p">}</span>
+
+  <span class="nd">@Override</span> 
+  <span class="k">fun</span> <span class="nf">process</span><span class="p">(</span>
+    <span class="n">annotations</span><span class="p">:</span> <span class="nc">Set</span><span class="p">&lt;</span><span class="err">?</span><span class="p">:</span> <span class="nc">TypeElement</span><span class="p">&gt;,</span>
+    <span class="n">env</span><span class="p">:</span> <span class="nc">RoundEnvironment</span>
+  <span class="p">):</span> <span class="nc">Boolean</span> <span class="p">{</span>
+    <span class="n">let</span> <span class="n">elements</span><span class="p">:</span> <span class="nc">Set</span><span class="p">&lt;</span><span class="err">?</span><span class="p">:</span> <span class="nc">Element</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">getElementsAnnotatedWith</span><span class="p">(</span><span class="nc">Example</span><span class="p">.</span><span class="k">class</span><span class="p">)</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="n">element</span> <span class="k">in</span> <span class="n">elements</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="nd">@Override</span> 
+  <span class="k">fun</span> <span class="nf">init</span><span class="p">(</span><span class="n">processingEnv</span><span class="p">:</span> <span class="nc">ProcessingEnvironment</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now let’s talk about how different annotation processors works together in <code class="language-plaintext highlighter-rouge">javac</code> with harmony.</p>
+
+<h1 id="processing-rounds">Processing Rounds</h1>
+<p>There is a cycle that is followed by <code class="language-plaintext highlighter-rouge">javac</code>, which allows every annotation processor to generate code for the annotations it is open for. This is the order of that flow:</p>
+
+<ol>
+  <li>We mark the element that our annotation is open to.</li>
+  <li><code class="language-plaintext highlighter-rouge">Javac</code> will start compiling. <code class="language-plaintext highlighter-rouge">Javac</code> is already aware of all the other annotation processors presents, as we have put them in the <code class="language-plaintext highlighter-rouge">classpath</code> which will be picked up by the <code class="language-plaintext highlighter-rouge">ServiceLoader</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Javac</code> will produce the <code class="language-plaintext highlighter-rouge">.class</code> files in the first processing round. As the <code class="language-plaintext highlighter-rouge">javac</code> has already processed the <code class="language-plaintext highlighter-rouge">.java</code> files, it is already aware of the annotations which were used. It will pass the control to the respective annotation processor now.</li>
+  <li>Now the annotation processor will start to do its job. Here, it may or may not produce additional <code class="language-plaintext highlighter-rouge">.java</code> files. For the sake of argument, let’s say our customer annotation processor generated a <code class="language-plaintext highlighter-rouge">.java</code> class which contains annotations to be used by some other annotation processor.</li>
+  <li>At this moment, all the original <code class="language-plaintext highlighter-rouge">.java</code> files have been compiled. However, because of a <code class="language-plaintext highlighter-rouge">.java</code> file generated by our customer annotation processor, <code class="language-plaintext highlighter-rouge">javac</code> will detect this and will start another processing round.</li>
+  <li>This cycle will keep on going until no more <code class="language-plaintext highlighter-rouge">.java</code> files have been generated and detected by the <code class="language-plaintext highlighter-rouge">javac</code>.
+It is a good idea to create domain specific models for the Elements we will process in the custom annotation processor’s process() function as it will make working on these elements easier. For example, if our annotation processor has a constraint that says “all the annotated classes must be in the same package”, then we can simply refer to the model’s package property instead of working on the element itself.</li>
+</ol>
+
+<p>A fun closing remark: Remember in the beginning we said that <code class="language-plaintext highlighter-rouge">ServiceLoader</code> is the one that will find our custom annotation processor and load it into the <code class="language-plaintext highlighter-rouge">javac</code>. Well in order for the <code class="language-plaintext highlighter-rouge">ServiceLoader</code> to do that, we have to create a certain file in a repository in our project. However, we can use a cool annotation processor called <code class="language-plaintext highlighter-rouge">AutoService</code>. All we need to do is mark our custom annotation processor’s class with <code class="language-plaintext highlighter-rouge">@AutoService(Processor.class)</code> and it will generate that repository in our project.</p>
+
+  </div><a class="u-url" href="/2020/04/16/all-about-annotations-and-annotation-processors.html" hidden></a>
+</article>
+      </div>
+    </main></body>
+
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Clean architecture | Coding with Karan</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Clean architecture" />
+<meta name="author" content="Karan Dhillon" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Writing code is fun. Maintaining it is not so. Statistically speaking, most of a developer’s time goes into reading the code than writing it. It sounds counterintuitive but it’s actually not if you think about it.You can make new features after every sprint if you follow agile practices, however during that sprint period, you will still try to spend time understanding how this new feature will fit into the ‘grand scheme’ and spend most of your mind cycles thinking what needs to be changed and what doesn’t. I believe, that is where clean architecture comes into play." />
+<meta property="og:description" content="Writing code is fun. Maintaining it is not so. Statistically speaking, most of a developer’s time goes into reading the code than writing it. It sounds counterintuitive but it’s actually not if you think about it.You can make new features after every sprint if you follow agile practices, however during that sprint period, you will still try to spend time understanding how this new feature will fit into the ‘grand scheme’ and spend most of your mind cycles thinking what needs to be changed and what doesn’t. I believe, that is where clean architecture comes into play." />
+<link rel="canonical" href="http://localhost:4000/2020/04/07/clean-architecture.html" />
+<meta property="og:url" content="http://localhost:4000/2020/04/07/clean-architecture.html" />
+<meta property="og:site_name" content="Coding with Karan" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-04-07T00:00:00-04:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Clean architecture" />
+<script type="application/ld+json">
+{"headline":"Clean architecture","dateModified":"2020-04-07T00:00:00-04:00","datePublished":"2020-04-07T00:00:00-04:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/04/07/clean-architecture.html"},"author":{"@type":"Person","name":"Karan Dhillon"},"description":"Writing code is fun. Maintaining it is not so. Statistically speaking, most of a developer’s time goes into reading the code than writing it. It sounds counterintuitive but it’s actually not if you think about it.You can make new features after every sprint if you follow agile practices, however during that sprint period, you will still try to spend time understanding how this new feature will fit into the ‘grand scheme’ and spend most of your mind cycles thinking what needs to be changed and what doesn’t. I believe, that is where clean architecture comes into play.","url":"http://localhost:4000/2020/04/07/clean-architecture.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Coding with Karan" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Coding with Karan</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Clean architecture</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2020-04-07T00:00:00-04:00" itemprop="datePublished">
+        Apr 7, 2020
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Writing code is fun. Maintaining it is not so. Statistically speaking, most of a developer’s time goes into reading the code than writing it. It sounds counterintuitive but it’s actually not if you think about it.You can make new features after every sprint if you follow agile practices, however during that sprint period, you will still try to spend time understanding how this new feature will fit into the ‘grand scheme’ and spend most of your mind cycles thinking what needs to be changed and what doesn’t. I believe, that is where clean architecture comes into play.</p>
+
+<p>To simply put, Clean architecture is just a bunch of rules and principles that needs to be followed which eventually will keep your software ‘soft’, i.e. easy to change. Now for every platform, the architecture would change its shape, however, on higher level, if two projects are to follow clean architecture, it is easy to understand both no matter on which one you are working on. This leads us to creating a higher level policy for our applications.
+Out of tons of principles, the most notable and famous ones are called the SOLID principles. The acronym stands for:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>S – Single responsibility Principle.
+O – Open/Closed Principle.
+L – Liskov Substitution Principle.
+I – Interface Segregation Principle.
+D – Dependency Inversion Principle.
+</code></pre></div></div>
+<p>In my personal belief, what gives clean architecture its cleanliness is <code class="language-plaintext highlighter-rouge">“Dependency Inversion Principle”</code>. In retrospect, all my problems in various projects used to happen because of low – level details creeping up into my high level policy. Change made in a small and far reached dependency somehow will start breaking how the view deals with a particular state. That happens because of these dependencies creeping their way up to places where they should not even exist. Out of these, the ones most hard to catch are called the <code class="language-plaintext highlighter-rouge">“Transitive Dependencies”</code>, but let’s come back to the topic as explaining that will be going on a tangent.</p>
+
+<p>This post will not go into details about what SOLID principles are. A quick google search will suffice. I rather wants to talk about the meaty parts of the clean architecture itself. So let’s start with my favourite, which is DOMAIN.</p>
+
+<h1 id="domain">DOMAIN</h1>
+
+<p>Domain creates what is called the <code class="language-plaintext highlighter-rouge">“Enterprise Logic”</code> in the realm of clean architecture. This means any logic that will live in your domain will be similar throughout your suite of applications. This could be your iOS, android, flutter, react native, web, etc. The point is, the stuff that lives here is independent of any platform. The logic in domain is its heart, and it mainly consists of two things:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Entities
+Use Cases
+</code></pre></div></div>
+
+<p>Entities are, to put it simply, a <code class="language-plaintext highlighter-rouge">POJO</code> class. They hold the least amount of logic, and their sole reason of existence is to shape the data that will be used by all the other applications, or rather whatever application sits on the top. For example, if we are building a notes taking application, we will have a <code class="language-plaintext highlighter-rouge">Note</code> entity which will look something like this:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">data class</span> <span class="nc">Note</span><span class="p">(</span>
+<span class="kd">val</span> <span class="py">text</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span>
+<span class="kd">val</span> <span class="py">author</span><span class="p">:</span> <span class="nc">String</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>Notice how there is no <code class="language-plaintext highlighter-rouge">id</code> field, or any other <code class="language-plaintext highlighter-rouge">primary key</code> field, or any annotation processor used. There is a reason behind all of this madness. And that is dependency.
+Adding annotations or mutating our entities so they can be used for persistence is not our goal here, especially in the domain layer. Adding 3rd party dependency will weaken the heart of your architecture, as now your domain depends on the 3rd party module. Purists who follow clean architecture to its true core goes as far as creating custom mappers for <code class="language-plaintext highlighter-rouge">JSON</code> to <code class="language-plaintext highlighter-rouge">String</code> and back to <code class="language-plaintext highlighter-rouge">JSON</code> even though there are fully fledged 3rd party libraries such as <code class="language-plaintext highlighter-rouge">GSON</code> by google Inc. to do that. Including <code class="language-plaintext highlighter-rouge">GSON</code> in entities, such as, would do not harm technically to your domain as the library is pretty stable and going nowhere. However, now you have a dependency in your domain, and in future if support to <code class="language-plaintext highlighter-rouge">GSON</code> ceases to exist or changes, you would have to go and make changes to your entities, hence breaking the second rule of <code class="language-plaintext highlighter-rouge">SOLID</code> principles, the <code class="language-plaintext highlighter-rouge">OPEN/CLOSED PRINCIPLE</code>.</p>
+
+<p>Use cases are contracts that give us information about what sort of action will be taken with our entities. For example, following our note taking application, here what our use cases will look like:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>IAddNoteUseCase
+IDeleteNoteUseCase
+IUpdateNoteUseCase
+IGetNoteUseCase
+</code></pre></div></div>
+<p>Notice how each use case has a prefix <code class="language-plaintext highlighter-rouge">I</code> in the beginning. That tells you that these use cases are interfaces and not actual implementation. The reason is again pretty simple, dependency. Ultimately, our <code class="language-plaintext highlighter-rouge">Presenter</code>, which will live in the presentation layer, will use these use case classes. However, we don’t want our presenter to know how the use case are being implemented. Presenter should have no such knowledge, as it will never in its lifetime will try to change it. So why release this information in the first place. This is a good way to safeguard our implementations and this is what causes the presentation layer to be dependent on our domain layer and not the other way around. Even though run time dependency goes from <code class="language-plaintext highlighter-rouge">presentation to domain</code>, the source code dependency goes from <code class="language-plaintext highlighter-rouge">presentation to use case implementation to IUseCase</code>. In doing so, we  followed the dependency inversion principle.</p>
+
+<p>This simple feature is what every architect use to spin those dependencies that travel from one module to another and turn them 180′. Also, note how we have separated every use case into a single unit, hence following single responsibility principle and interface segregation principle.</p>
+
+<p>Use cases are typically composed of repositories which can help them pull all the models they need. Here, models means data that will be sent through us from various data sources. However, use cases will not be aware of these models, as the repositories will convert these models to entities and nicely serve it to our use case, which will simply propagate the result by wrapping it in a state object. Read <code class="language-plaintext highlighter-rouge">railway programming paradigm</code> to learn more about it.</p>
+
+<p>Now let’s talk about the data layer.</p>
+
+<h1 id="data">DATA</h1>
+
+<p>Our Data layer usually consists of the following:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>IRepositories
+IDataSources
+Models
+</code></pre></div></div>
+<p>Needless to say, again we are only releasing the contract to the domain layer. Domain layer should only know what can be done, instead of how it is being done. Our repositories will be cleanly segregated based on the feature. Usually, our repositories will be made up of our local data source implementation, our remote data source implementation, and our custom network info class, which can act as a utility class for checking the network state of the application that is being implied Again, we will use <code class="language-plaintext highlighter-rouge">INetworkInfo</code> as the only thing in our case, for instance, that we want to use is a helper method class,  which will return us a boolean based on the network state.</p>
+
+<p>Data sources is where we will put all our low-level details. Feel free to make use of annotations in the models and to use data persistence throughout your application. Your logic is very cleanly placed in a single place which is the repository. You can decide the order in which persistence will occur. A general rule of thumb is to fetch the active remote data, save it in local storage, and send the data to the upper layers. In a situation where network state is inactive, you can write the logic that can make this local storage data kick in, while you are still checking the network state in the background with exponential back off.</p>
+
+<p>Most of the work will be done by the data sources. The only thing we expect from our data sources is a model which should be non-null. Use all the tools at your disposal that your language provides you here. In cases where data sources fail to fetch a model, we can raise and <code class="language-plaintext highlighter-rouge">exception</code>. This raised <code class="language-plaintext highlighter-rouge">exception</code> will be neatly caught in our repository. What we expect from out repository is a <code class="language-plaintext highlighter-rouge">Result</code>. Now this <code class="language-plaintext highlighter-rouge">Result</code> can further have as many states as you want, but for simplicity, we can say that it is composed of <code class="language-plaintext highlighter-rouge">Result&lt;model, exception&gt;</code>, with <code class="language-plaintext highlighter-rouge">Result.Success</code> and <code class="language-plaintext highlighter-rouge">Result.error</code> as its child classes. This can be easily used in the use cases to see what kind of response is provided be the repository and based on an error or a failure we can propagate it further to our views.</p>
+
+<blockquote>
+  <p>Read about “State Transition Machines” to understand more about the concept of states.</p>
+</blockquote>
+
+<blockquote>
+  <p>Read about “Sealed classes” or “Enums” to understand how we can create these state hierarchies.</p>
+</blockquote>
+
+<p>Last, but not the least, comes the presentation layer.</p>
+
+<h1 id="presentation">PRESENTATION</h1>
+
+<p>Our presentation layer will consist of the following:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Views
+Presenters
+</code></pre></div></div>
+<p>If you have multiple presenters working together and assisting a single view, feel free to use interfaces as we did to protect your view having a transitive dependency on your presenters. To keep things simple in our case, we will go ahead and simply create the concrete classes that hold the logic. In simple applications, this approach is fine as the flow of control usually goes from <code class="language-plaintext highlighter-rouge">view to presenter</code> all the time.</p>
+
+<p>Here we have multiple choices as we are at the edge of our architecture. Anything we do can be and should be easily swappable as this does not concern our other layers. Being an android developer, I see the trend of migration from MVP to MVVM (Yes I know MVI is the ‘new boom’. However, technically all the MVs are not architectures). With our clean architecture implemented, this migration is painless as all we would need to do is copy the code lying in presenter to our view model and switch it inside the view. We can now reap the benefits a viewmodel offers us, without worrying about how our data sources or repositories will change.</p>
+
+<p>This ability to switch different components without touching others is what clean architecture provides us. Now in theory, it sounds like an overkill and some might argue a lot of this can be achieved without implementing such modules. And you are right. All of the above can be done without all the segregation we have talked about so far. However, in doing so you will create an architecture nevertheless particularly unique to this application, and the understanding and complexities of this architecture will be implicit to those who created it. An average lifespan of a software developer in a company is 1-2 years, whereas the software being written usually lasts 5-6 years. That means for those 3-4 years, the new developers will be in a constant state of confusion and disapproval. Every code will be questioned by them as they will fail to realize how things were done the way they look in code right now. On the other hand, if everything is properly put in its own module and the architect keeps our good old friend dependencies in check, the boundaries will make clear sense. Even the new developers will pick up the project quickly and the thought of not leaking information along these boundaries will be clear. On top of that, putting Test Driven Development (TDD) in the mix will further provide strong documentation about each and every module, as per to say what it can do and what it can’t.</p>
+
+<p>As stated in the book with the eponymous title, making software is scientific and not mathematic. We are constantly trying to prove what our software cannot do, and not what it can do. And anything we fail to prove that it cannot do for a long time, hence become one of the features our software which it can do.</p>
+
+  </div><a class="u-url" href="/2020/04/07/clean-architecture.html" hidden></a>
+</article>
+      </div>
+    </main></body>
+
+</html>

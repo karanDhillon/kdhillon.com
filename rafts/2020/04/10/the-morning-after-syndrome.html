@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>The morning after syndrome | Coding with Karan</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="The morning after syndrome" />
+<meta name="author" content="Karan Dhillon" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Anyone who has worked on a mid to large sized project, has experienced the phenomena when the changes you made for the day are not present the next day when you touch the codebase as your work got overwritten by someone else. This is what know as “The Morning After Syndrome”. Today we will do the RCA for this and try to understand how we can solve this issue in our projects." />
+<meta property="og:description" content="Anyone who has worked on a mid to large sized project, has experienced the phenomena when the changes you made for the day are not present the next day when you touch the codebase as your work got overwritten by someone else. This is what know as “The Morning After Syndrome”. Today we will do the RCA for this and try to understand how we can solve this issue in our projects." />
+<link rel="canonical" href="http://localhost:4000/2020/04/10/the-morning-after-syndrome.html" />
+<meta property="og:url" content="http://localhost:4000/2020/04/10/the-morning-after-syndrome.html" />
+<meta property="og:site_name" content="Coding with Karan" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-04-10T00:00:00-04:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="The morning after syndrome" />
+<script type="application/ld+json">
+{"headline":"The morning after syndrome","dateModified":"2020-04-10T00:00:00-04:00","datePublished":"2020-04-10T00:00:00-04:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/04/10/the-morning-after-syndrome.html"},"author":{"@type":"Person","name":"Karan Dhillon"},"description":"Anyone who has worked on a mid to large sized project, has experienced the phenomena when the changes you made for the day are not present the next day when you touch the codebase as your work got overwritten by someone else. This is what know as “The Morning After Syndrome”. Today we will do the RCA for this and try to understand how we can solve this issue in our projects.","url":"http://localhost:4000/2020/04/10/the-morning-after-syndrome.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Coding with Karan" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Coding with Karan</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">The morning after syndrome</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2020-04-10T00:00:00-04:00" itemprop="datePublished">
+        Apr 10, 2020
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Anyone who has worked on a mid to large sized project, has experienced the phenomena when the changes you made for the day are not present the next day when you touch the codebase as your work got overwritten by someone else. This is what know as <code class="language-plaintext highlighter-rouge">“The Morning After Syndrome”</code>. Today we will do the RCA for this and try to understand how we can solve this issue in our projects.</p>
+
+<blockquote>
+  <p>Root Cause – Presence of a Cyclic Dependency Graph in your components.</p>
+</blockquote>
+
+<p><img src="/assets/images/Cyclic-dependency-graph.png" alt="Cyclic dependency graph" /></p>
+
+<p>In the above diagram, you will notice that are our components are well laid and the dependencies flow from top to bottom. A change in the authorizer will not cause a change trigger in the database for example. The only component that needs to be rebuild are those that are directly dependent on our authorizer component, which in our case is the main component. This is what is called a <code class="language-plaintext highlighter-rouge">“Directed Acyclic Graph”</code> or <code class="language-plaintext highlighter-rouge">“DAG”</code> for short.</p>
+
+<p>Having your components laid out where they can be separately build and deployed is what an architect wants to achieve. This has several benefits as follows:</p>
+<ul>
+  <li>Each component’s testing becomes easier and practical.</li>
+  <li>Teams will be able to migrate to new releases of that component as it is not strongly coupled with other components and most importantly.</li>
+  <li>Teams can work independently without overwriting each others work.</li>
+</ul>
+
+<p>This utopia, however can be seriously taken away by adding one simple dependency in the mix to our architecture, having ,for example, our entities depend on our authorizer.</p>
+
+<p>If a developer unknowingly creates a entity to be dependent on one of the classes in the authorizer component in order to not “duplicate” the code, we will have more problems than what this idea tried to solve in the first place. To realize the extent of damage done, let us imagine a scenario where our authorizer component had some new changes and needs to be redeployed just like we did in the beginning of this blogpost. However, this time there are lots of actors involved:</p>
+<ul>
+  <li>Entities and main components will be rebundled because of their direct dependencies on authorizer component.</li>
+  <li>Database and Interactor components will be rebundled because the entity component has changed. There could be a scenario where entity component is not even using this new code that was published in the authorizer component, however, it will still be rebuilt because of its direct dependency on authorizer.</li>
+</ul>
+
+<p>Notice how a single dependency has completely thwarted the architect’s effort to maintain their plugin style architecture. The developer’s original intent might be to use Permission class from the authorizer component, which is nothing than a Util class. However, in doing so, an entire component gets depended on another. The solution will be discussed later, but in our case this could have been simply avoided if the developer recreates the Permission util class in the entities package as well.</p>
+
+<blockquote>
+  <p>Read Sandi Metz’s <a href="https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction">Wrong abstraction</a> article for further reference.</p>
+</blockquote>
+
+<h1 id="solution">Solution</h1>
+<h4 id="apply-the-dependency-inversion-principle">Apply the Dependency Inversion Principle</h4>
+
+<p><img src="/assets/images/Solution-1.png" alt="Soultion 1" /></p>
+
+<p>Our primary goal is to convert our cyclic graph back to DAG. In order to do that we have to resolve this new <code class="language-plaintext highlighter-rouge">entities to authorizer</code> dependency. One solution is to apply dependency inversion principle. We can introduce a <code class="language-plaintext highlighter-rouge">IPermission</code> interface which will be part of entities component. Whichever entity class was previously directly referencing the permissions util class can now do so by using our new <code class="language-plaintext highlighter-rouge">IPermissions</code> interface. This will protect our entities component from knowing too much detail about how Permissions class is implemented in the authorizer component. There will also be no need to rebundle the entities component this time as there is no direct dependency.</p>
+
+<h4 id="create-a-new-component-that-both-the-entities-and-authorizer-depends-upon">Create a new component that both the entities and authorizer depends upon</h4>
+
+<p><img src="/assets/images/Solution-2.png" alt="Soultion 2" /></p>
+
+<p>In this solution, we simply move all the classes that are involved in entities and authorizer components into a new component. What we are doing here is simply separating what frequently changes from the part which doesnot. In terms of design patterns, we just applied the strategy pattern.</p>
+
+<p>Spawning new components is not the best approach as the new component might not make great sense in the grand scheme. Purists can argue over how it could lead to the violation of the Common Closure Principle – Classes that change together should be in the same component. However, applying this solution does give us our DAG back and gets rid of the cyclic nature our system was heading towards.</p>
+
+<p>It would make sense to take out some time at this point and explore what your components are composed of. You want to enjoy separation of concerns as long as the separations you make, make good sense in the long run. A good thought to keep in mind at this point would be how you will version your components for new releases. Too many versioning would allow slow adoption whereas less components would cause less reusability.  This is also known as “Cohesion principles tension diagram”.</p>
+
+<p>In the end, each architect has to decide which benefits they want to enjoy at the current moment. For now, reusability might not make much sense and coming out with new versions would. Later, reusing would more make sense than better adoption rate. What one does will depend on which state the architect wants the system to be.</p>
+
+  </div><a class="u-url" href="/2020/04/10/the-morning-after-syndrome.html" hidden></a>
+</article>
+      </div>
+    </main></body>
+
+</html>
