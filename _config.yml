@@ -1,12 +1,12 @@
-title: Coding with Karan
+title: Karan Dhillon
 author: Karan Dhillon
-email: me@codingwithkaran.com
+email: me@kdhillon.com
 description: >- # this means to ignore newlines until "baseurl:"
   I am a Mobile Engineer who works for a Toronto based company called Homestars, Inc.
   I love working on android applications where I incorporate clean architecture along with 
   SOLID principles all enforced by a Test Driven Development (TDD) approach.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://codingwithkaran.com/" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://kdhillon.com/" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: karandhillon95
 github_username:  karandhillon
 include: ['_pages']
