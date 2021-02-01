@@ -1,8 +1,13 @@
 ---
 layout: post
 title:  "Navigation in a pure jetpack compose project - part #1"
+excerpt: "How to use navigation component in the compose world where there are no fragments"
 ---
 ![Compass]({{site.baseurl}}/assets/images/compass.jpeg)
+
+Check out all the articles in the series:
+* Navigating in a pure jetpack compose project — part #1
+* [Navigating in a pure jetpack compose project — part #2](https://kdhillon.com/2021/02/01/navigation-in-a-pure-jetpack-compose-project-part-2.html)
 
 Jetpack compose is the new kid on the block. Though its relatively new, compared to the traditional android UI toolkit, soon will come those days when projects will start migrating to jetpack compose, and more & more companies will put it as a requirement for their potential android developer. As of the publishing date of this article, the argument "will composables completely replace fragments or views?" has not been achieved yet. There are certain things, on the other hand, which have been achieved with jetpack compose, one of which is navigation among different composables. Let's take a look and see how jetpack's navigation component library works seamlessly with jetpack compose.
 

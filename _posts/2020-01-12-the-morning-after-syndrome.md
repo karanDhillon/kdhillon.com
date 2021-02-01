@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "The morning after syndrome"
+excerpt: "What it is, and how to deal with it"
 ---
 
 Anyone who has worked on a mid to large sized project, has experienced the phenomena when the changes you made for the day are not present the next day when you touch the codebase as your work got overwritten by someone else. This is what know as `“The Morning After Syndrome”`. Today we will do the RCA for this and try to understand how we can solve this issue in our projects.

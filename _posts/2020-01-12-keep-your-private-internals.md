@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Keep your privates internal"
+excerpt: "How being a little explicit about package visibility can be helpful"
 ---
 `Java` default visibility modifier for its elements is `protected`. `Protected` means that those elements have package level visibility, which in turn means only elements in the same package are allowed to use the element marked with `protected` visibility modifier. This made sure that your `classes` present in a different package cannot accidently use `class` from a different package. But here walks in `Kotlin`, making the elements default visibility modifier `public`. Sounds like a small change, but its not. It’s a major change. A change which can cause havoc if you are not cautious with the way you are exposing your elements.First let me explain why `kotlin` did what `kotlin` did.
 

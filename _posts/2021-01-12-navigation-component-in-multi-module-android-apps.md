@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Navigation component in multi-module android apps"
+excerpt: "How to manage navigation graphs in a multi-module application"
 ---
 
 ![Nav graph]({{site.baseurl}}/assets/images/navigation-graph.png)

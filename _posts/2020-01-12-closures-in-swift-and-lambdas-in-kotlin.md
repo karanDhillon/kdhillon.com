@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Closures in swift and lambdas in kotlin"
+excerpt: "Looking into what the similarities and differences are"
 ---
 Kotlin and Swift are currently the top two choices of language for Android and iOS respectively. Both have been successfully adopted by their respective communities of developers who use these sharp languages to create some amazing pieces of work. Even though these two languages have their own trademark, underneath it is all the same with different names for legal purposes:
 * Structures offered by Swift can be created as Data Structures in Kotlin by enforcing the kotlin classes to follow some rules.

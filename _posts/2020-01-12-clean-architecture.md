@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Clean architecture"
+excerpt: "Learn what it means to implement 'clean architecture' in the project"
 ---
 Writing code is fun. Maintaining it is not so. Statistically speaking, most of a developer’s time goes into reading the code than writing it. It sounds counterintuitive but it’s actually not if you think about it.You can make new features after every sprint if you follow agile practices, however during that sprint period, you will still try to spend time understanding how this new feature will fit into the ‘grand scheme’ and spend most of your mind cycles thinking what needs to be changed and what doesn’t. I believe, that is where clean architecture comes into play.
 

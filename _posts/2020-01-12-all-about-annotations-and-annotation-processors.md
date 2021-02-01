@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "All about annotations and annotation processors"
+excerpt: "Understanding what annotation processors are, and how they work"
 ---
 
 ![Annotation processing rounds]({{site.baseurl}}/assets/images/annotation-processing-rounds.png)
