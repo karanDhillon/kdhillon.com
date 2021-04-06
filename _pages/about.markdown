@@ -14,12 +14,7 @@ I am an android developer with computer science background. I love working on an
 ---
 <br>
 #### **Speaking**
-Coming Soon!
-
----
-<br>
-#### **Certificates**
-Coming Soon!
+* [Kotlin goes global](https://www.youtube.com/watch?v=HTbWCDpVReY), GDG Nagpur
 
 ---
 <br>
