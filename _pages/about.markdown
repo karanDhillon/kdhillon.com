@@ -24,7 +24,8 @@ Android Kotlin Jetpack Compose RxJava Git SQL JIRA JSON Android Studio Gradle Py
 ---
 <br>
 #### **Work Experience**
-* Homestars, Mobile Developer 12/2019 - Present
+* Hootsuite, Software Developer (Mobile) 03/2021 - Present
+* Homestars, Mobile Developer 12/2019 - 03/2021
 * Softchoice, Android Developer Intern 09/2018 - 04/2019
 * Crescente, Associate Web Developer 09/2016 - 08/2017
 
