@@ -14,7 +14,9 @@ I am an android developer with computer science background. I love working on an
 ---
 <br>
 #### **Speaking**
-* [Kotlin goes global](https://www.youtube.com/watch?v=HTbWCDpVReY), GDG Nagpur
+* [KMM with Jetpack Compose and Swift UI](https://www.youtube.com/watch?v=9sc05TZDxr4), Android Worldwide May 12th 2021
+* [Kotlin goes global](https://www.youtube.com/watch?v=9wut8IQst-U), Android Worldwide Apr 27th 2021
+* [Kotlin goes global](https://www.youtube.com/watch?v=HTbWCDpVReY), GDG Nagpur Feb28th 2021
 
 ---
 <br>
